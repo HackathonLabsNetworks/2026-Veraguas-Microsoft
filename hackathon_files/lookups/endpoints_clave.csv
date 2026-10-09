@@ -1,0 +1,6 @@
+endpoint,metodo,proposito,controlado_por,estado_esperado_final
+/health,GET,Liveness check basico,N/A,200 OK
+/health/deep,GET,Validacion profunda de dependencias internas,HealthChecks.Mode = deep,200 OK / status saludable
+/api/flights/list,GET,Catalogo de vuelos (datos en memoria),PRODUCT_SERVICE_URL,200 OK con listado de vuelos
+/api/flights/create,POST,Creacion de nuevo vuelo (persistencia in-memory),Validacion de payload (campos definidos del modelo Flight),201 Created y visible en GET /api/flights/list
+/api/status,GET,Validacion final de disponibilidad,Features.EnableFinalValidation = true,200 OK con ready:true

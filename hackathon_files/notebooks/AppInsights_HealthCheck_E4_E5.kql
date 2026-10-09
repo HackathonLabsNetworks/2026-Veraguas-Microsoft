@@ -1,0 +1,15 @@
+// Uso de referencia: Application Insights > Logs
+// Objetivo: verificar el estado de /health/deep (E4) y /api/status (E5)
+
+requests
+| where timestamp > ago(1h)
+| where name has "/health/deep" or name has "/api/status"
+| project timestamp, name, resultCode, duration, success
+| order by timestamp desc
+
+// Traces relacionados a feature flags y modo de health check
+traces
+| where timestamp > ago(1h)
+| where message has "EnableFinalValidation" or message has "HealthChecks" or message has "basic" or message has "deep"
+| project timestamp, message, severityLevel
+| order by timestamp desc

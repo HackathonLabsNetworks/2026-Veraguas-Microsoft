@@ -1,0 +1,8 @@
+codigo,categoria,visibilidad,puntos_disponibles,prerequisito
+Cat1,Acceso e Inicio,Visible desde el inicio,30,Ninguno
+Cat2,Despliegue IaC,Visible desde el inicio,90,Ninguno
+Cat3,Diagnostico Paralelo (E1-E2-E3),Visible al completar Cat2,180,Cat2
+Cat4,Correccion Avanzada - Health check profundo (E4),Visible al completar Cat3,125,Cat3
+Cat5,Validacion Operativa - Feature flag (E5),Visible al completar Cat4,120,Cat4
+Cat6,Validacion Final - Creacion API vuelos mas dificil (E6),Visible al completar Cat5,175,Cat5
+Cat7,Teoria DevOps/Azure,Visible desde el inicio,150,Ninguno

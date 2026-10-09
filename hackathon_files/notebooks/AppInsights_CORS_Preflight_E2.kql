@@ -1,0 +1,10 @@
+// Uso de referencia: Application Insights > Logs
+// Objetivo: localizar los requests OPTIONS (preflight) relacionados al Error E2
+// (CORS AllowedOrigins mal configurado)
+
+requests
+| where timestamp > ago(1h)
+| where name has "OPTIONS"
+| where resultCode == "204" or resultCode == "403"
+| project timestamp, name, resultCode, cloud_RoleName, customDimensions
+| order by timestamp desc

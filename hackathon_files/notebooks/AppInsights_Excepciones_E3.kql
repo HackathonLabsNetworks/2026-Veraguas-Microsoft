@@ -1,0 +1,10 @@
+// Uso de referencia: Application Insights > Logs
+// Objetivo: localizar la excepcion de configuracion asociada al Error E3
+// (variable de entorno PRODUCT_SERVICE_URL no encontrada)
+
+exceptions
+| where timestamp > ago(1h)
+| where cloud_RoleName has "api"
+| where outerMessage has "PRODUCT_SERVICE_URL" or outerMessage has "ConfigurationException"
+| project timestamp, cloud_RoleName, outerMessage, operation_Name
+| order by timestamp desc

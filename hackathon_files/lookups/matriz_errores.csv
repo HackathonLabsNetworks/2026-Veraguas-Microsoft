@@ -1,0 +1,7 @@
+codigo,tipo,bloque,dependencia,archivo_relacionado,sintoma_visible,objetivo_aprendizaje
+E1,Integracion frontend-backend,Paralelo,Ninguna,frontend/src/environments/environment.prod.ts,Frontend carga pero todas las llamadas a la API fallan,Configuracion de entornos y troubleshooting de integracion frontend-backend
+E2,Seguridad web (CORS),Paralelo,Ninguna,backend/appsettings.Production.json (Cors.AllowedOrigins),Navegador bloquea llamadas por CORS aunque el backend responda directo,Seguridad web basica y relacion frontend-backend
+E3,Variable de entorno,Paralelo,Ninguna,nombre de variable de entorno correcto,/api/service devuelve 400 por variable no encontrada,Configuration drift entre infraestructura y aplicacion
+E4,Health check profundo,Dependiente,Requiere E1+E2+E3,backend/appsettings.Production.json (HealthChecks.Mode),/health/deep devuelve estado degradado,Diferencia entre "responde" y "esta correctamente configurada"
+E5,Feature flag,Dependiente,Requiere E4,backend/appsettings.Production.json (Features.EnableFinalValidation),/api/status devuelve ready:false,Feature flags como mecanismo de control de despliegue
+E6,Creacion de vuelos (API POST) - mas dificil,Dependiente,Requiere E5,backend/Controllers/FlightsController.cs (POST /api/flights/create),POST /api/flights/create no implementado y GET /api/flights/list no refleja el nuevo vuelo,Diseno e implementacion de endpoints REST POST con validacion de payload y persistencia
